@@ -9,13 +9,11 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import HomeReducer from './app/home/home.reducer'
-import App from './app/app.component'
-import HomeRoute from './app/home/home.route'
-import FooRoute from './app/foo/foo.route'
+import * as reducers from './client/components/reducers'
+import AppRouter from './client/app/app.router'
 
 const reducer = combineReducers({
-  home : HomeReducer,
+  ...reducers,
   routing: routerReducer
 })
 
@@ -35,10 +33,7 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <Router history={history}>
-        <Route path="/" component={App}>
-          {HomeRoute}
-          {FooRoute}
-        </Route>
+        {AppRouter}
       </Router>
       <DevTools />
     </div>

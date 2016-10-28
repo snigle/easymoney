@@ -1,22 +1,8 @@
-import { INCREASE, DECREASE } from './home.constants'
+import { INCREASE, DECREASE } from './counter.constants'
+
 const initialState = {
   number: 1
 }
-
-export function increase(n) {
-  return {
-    type: INCREASE,
-    amount: n
-  }
-}
-
-export function decrease(n) {
-  return {
-    type: DECREASE,
-    amount: n
-  }
-}
-
 
 export default function update(state = initialState, action) {
   if(action.type === INCREASE) {

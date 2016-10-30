@@ -1,15 +1,11 @@
-import { INCREASE, DECREASE } from './counter.constants'
+import { INCREASE, DECREASE } from "./counter.constants";
 
-export function increase(n) {
-  return {
+export let increase = (n) => ({
     type: INCREASE,
     amount: n
-  }
-}
+});
 
-export function decrease(n) {
-  return {
+export let decrease = (n) =>({
     type: DECREASE,
     amount: n
-  }
-}
+});

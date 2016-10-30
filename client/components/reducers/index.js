@@ -1,5 +1,4 @@
-export counter from './counter/counter'
-
+export counter from "./counter/counter";
 // NOTE [Create new reducer]
 // Include new reducers here, it permits to app.js to include all reducers in once
 

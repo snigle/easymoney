@@ -1,5 +1,4 @@
-import React from 'react'
-import _ from './foo.less'
+require("./foo.less");
 
-const Foo = () => (<div id="foo">I am Foo!</div>)
-export default Foo
+const Foo = () => (<div id="foo">I am Foo!</div>);
+export default Foo;

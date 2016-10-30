@@ -1,6 +1,11 @@
 # Simple static front Starter for React-router-redux
 
-Very simple starter for react-router-redux without server. Only generate html/js/css to a dist folder. Your application can be hosted in simple static file hosting !
+Very simple starter for react-router-redux without server.
+
+Only generate html/js/css to a dist folder.
+Your application can be hosted in simple static file hosting !
+
+Inspired by https://github.com/reactjs/react-router-redux/tree/master/examples/basic
 
 ## Installation
 ```

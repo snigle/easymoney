@@ -1,24 +1,43 @@
-## Synopsis
+# Simple static front Starter for React-router-redux
 
-Local javascript storage for banks accounts data management. Ability to store data in cloud saas such as Google Drive, Dropbox. Done using ReactJs.
-
-## Code Example
-
-TODO
+Very simple starter for react-router-redux without server. Only generate html/js/css to a dist folder. Your application can be hosted in simple static file hosting !
 
 ## Installation
+```
+npm install
+```
 
+## Run in dev mode
 
+### Server mode
+create a node server and update automatically your browser when you modify your files
+```
+npm run dev
+```
 
-## Tests
+### Static mode
+Watch your code and generate js/html/css in the dist folder
+```
+npm run dev-simple
+```
 
-TODO
+## Build
+Generate minified js/html/css in the dist folder
+```
+npm run build
+```
 
-## Contributors
+## Clean
+Remove dist folder
+```
+npm run clean
+```
 
-lamarchelu
+# Contributors
+
+snigle
 matthieusb
 
 ## License
 
-Apache License
+MIT License

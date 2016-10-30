@@ -1,0 +1,48 @@
+#operation {
+  @height: 80px;
+  display: table;
+table-layout:fixed;
+  .tr  {
+    display: table-row;
+    height: @height;
+  }
+
+  .td {
+    display: table-cell;
+    vertical-align: middle;
+    border-top: 1px gray solid;
+  }
+
+  .icon {
+    width:@height;
+    text-align: center;
+    .fa {
+      @operationIconSize : 50px;
+      @operationIconPadding : 5px;
+      display:inline-block;
+      font-size: @operationIconSize - 2 * @operationIconPadding;
+      width: @operationIconSize;
+      height: @operationIconSize;
+      border-radius: 50%;
+      padding:@operationIconPadding;
+      background-color: red;
+    }
+  }
+
+  .description {
+    width: 100%;
+    h4 {
+      font-weight: bold;
+    }
+  }
+
+  .prices {
+    width: 2 * @height;
+    text-align: right;
+    .price {
+      font-size:22px;
+      color:red;
+      font-weight: bold;
+    }
+  }
+}

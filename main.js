@@ -1,8 +1,8 @@
-import createDevTools from "redux-devtools";
+import { createDevTools } from "redux-devtools";
 import LogMonitor from "redux-devtools-log-monitor";
 import DockMonitor from "redux-devtools-dock-monitor";
 
-require("react");
+import React from "react"; // eslint-disable-line no-unused-vars
 import ReactDOM from "react-dom";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";

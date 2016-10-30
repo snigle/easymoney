@@ -39,6 +39,9 @@
     "webpack-load-plugins": "^0.1.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --no-info --open"
+    "dev": "webpack-dev-server --history-api-fallback --no-info --open",
+    "dev-simple": "npm run clean && NODE_ENV=dev webpack --watch",
+    "build": "npm run clean && NODE_ENV=production webpack",
+    "clean": "rm -rf dist/*"
   }
 }

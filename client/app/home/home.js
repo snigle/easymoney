@@ -1,4 +1,5 @@
-import connect from "react-redux";
+import React from "react"; // eslint-disable-line no-unused-vars
+import { connect } from "react-redux";
 import { increase, decrease } from "../../components/reducers/counter/counter.actions";
 require("./home.less");
 

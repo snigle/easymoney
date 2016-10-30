@@ -1,7 +1,7 @@
 {
-  "name": "easymoney",
-  "version": "0.0.1",
-  "repository": "snigle/easymoney",
+  "name": "easy-react-router-redux-starter",
+  "version": "0.5.0",
+  "repository": "snigle/easy-react-router-redux-starter",
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^3.3.7",

@@ -3,7 +3,7 @@ import { FormattedNumber } from "react-intl";
 require("./operation.less");
 
 const Operation = (props) => (
-  <div id="operation" className="table">
+  <div id="operation" className="table" onClick={props.onClick}>
     <div className="tr">
       <div className="icon td">
         <i><i className={`fa fa-${props.icon}`}></i></i>

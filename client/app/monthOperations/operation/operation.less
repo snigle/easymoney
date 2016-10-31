@@ -5,12 +5,16 @@
   @operationIconFaSize : 30px;
   @height: 70px;
   display: table;
-table-layout:fixed;
+  table-layout:fixed;
+  margin-bottom: 0px;
+  cursor: pointer;
   .tr  {
     display: table-row;
     height: @height;
   }
-
+  .tr:hover{
+    background-color: @gray-lighter;
+  }
   .td {
     display: table-cell;
     vertical-align: middle;
@@ -44,6 +48,7 @@ table-layout:fixed;
       font-size: 24px;
       margin-bottom: 0px;
       margin-top: 0px;
+      text-transform: capitalize;
     }
     div {
       font-size:16px;

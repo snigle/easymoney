@@ -1,14 +1,14 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { hashHistory } from "react-router";
-import Operation from "../operation/operation";
+import Operation from "./operation/operation";
 
-require("./foo.less");
+require("./monthOperations.less");
 
-const Foo = ({ operations }) => {
+const MonthOperations = ({ operations }) => {
   let currentSum = 100.0;
   return (
-  <div id="foo">
+  <div id="monthOperations">
     <h2>Test Operation :</h2>
     {
         Object.entries(operations).map(([uuid, operation]) => {
@@ -31,4 +31,4 @@ const Foo = ({ operations }) => {
 export default connect(
   (state) => ({ operations: state.operations }),
   { }
-)(Foo);
+)(MonthOperations);

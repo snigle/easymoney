@@ -1,5 +1,9 @@
+@import "~bootstrap/less/bootstrap";
+
 #operation {
-  @height: 80px;
+  @operationIconSize : 50px;
+  @operationIconFaSize : 30px;
+  @height: 70px;
   display: table;
 table-layout:fixed;
   .tr  {
@@ -10,22 +14,26 @@ table-layout:fixed;
   .td {
     display: table-cell;
     vertical-align: middle;
-    border-top: 1px gray solid;
+    border-top: 1px @gray-lighter solid;
   }
 
   .icon {
     width:@height;
     text-align: center;
-    .fa {
-      @operationIconSize : 50px;
-      @operationIconPadding : 5px;
-      display:inline-block;
-      font-size: @operationIconSize - 2 * @operationIconPadding;
-      width: @operationIconSize;
-      height: @operationIconSize;
+    i {
+      display:table;
+      margin:auto;
+      width:@operationIconSize;
+      height:@operationIconSize;
+      background-color: lightgreen;
       border-radius: 50%;
-      padding:@operationIconPadding;
-      background-color: red;
+      .fa {
+        display:table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-size:@operationIconFaSize;
+        color : white;
+      }
     }
   }
 
@@ -33,6 +41,13 @@ table-layout:fixed;
     width: 100%;
     h4 {
       font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+    div {
+      font-size:16px;
+      color:@gray-light;
     }
   }
 
@@ -43,6 +58,9 @@ table-layout:fixed;
       font-size:22px;
       color:red;
       font-weight: bold;
+    }
+    .currentTotal {
+      color : @gray-light;
     }
   }
 }

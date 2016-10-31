@@ -6,7 +6,7 @@ require("./foo.less");
 const Foo = () => (
   <div id="foo">
     <h2>Test Operation :</h2>
-    <Operation />
+    <Operation currency="EUR" price={150.96} currentTotal={360.20} category="Restaurant" icon="bed" color="lightgreen" title="Mcdonald"/>
     </div>
 );
 export default Foo;

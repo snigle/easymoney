@@ -2,27 +2,30 @@ import React from "react"; // eslint-disable-line no-unused-vars
 import { FormattedNumber } from "react-intl";
 require("./operation.less");
 
-const Operation = () => (
+const Operation = (props) => (
   <div id="operation" className="table">
     <div className="tr">
       <div className="icon td">
-        <i><i className="fa fa-home"></i></i>
+        <i><i className={`fa fa-${props.icon}`}></i></i>
       </div>
       <div className="description td">
         <h4 className="title">
-          Mcdonald
+          {props.title}
         </h4>
-        <div>Restaurant</div>
+        <div>{props.category}</div>
       </div>
       <div className="prices td">
         <div className="price">
           <FormattedNumber
-            value={150.96}
+            value={props.price}
             style="currency"
-            currency="EUR" />
+            currency={props.currency} />
         </div>
         <div className="currentTotal">
-          360,20 €
+          <FormattedNumber
+            value={props.currentTotal}
+            style="currency"
+            currency={props.currency} />
         </div>
       </div>
     </div>

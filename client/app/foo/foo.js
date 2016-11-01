@@ -1,30 +1,12 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
-import { hashHistory } from "react-router";
-import Operation from "../operation/operation";
 
 require("./foo.less");
 
 const Foo = ({ operations }) => {
-  let currentSum = 100.0;
   return (
   <div id="foo">
-    <h2>Test Operation :</h2>
-    {
-        Object.entries(operations).map(([uuid, operation]) => {
-          currentSum += operation.value;
-          return(
-        <Operation key={uuid}
-          currency="EUR"
-          price={operation.value || 0}
-          currentTotal={currentSum}
-          category="Restaurant"
-          icon="cutlery"
-          color="lightgreen"
-          title={operation.title}
-          onClick={() => hashHistory.push(`/operationForm/${uuid}`)}/>
-      );})
-    }
+    Fooooo
   </div>
 );
 };

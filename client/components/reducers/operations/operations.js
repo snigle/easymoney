@@ -12,10 +12,10 @@ export default (state = initialState, action) => {
   switch(action.type) {
     case INSERT :
     case UPDATE :
-      result[action.uuid] = action.operation;
+      result[action.operation.uuid] = action.operation;
       return saveAndReturn(result);
     case DELETE :
-      result[action.uuid].deleted = true;
+      result[action.operation.uuid].deleted = true;
       return saveAndReturn(result);
     default : return state;
   }

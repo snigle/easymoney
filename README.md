@@ -1,11 +1,9 @@
-# Simple static front Starter for React-router-redux
+# EasyMoney
 
-Very simple starter for react-router-redux without server.
+EasyMoney is a web application to manager your sold in your different wallets. You can list all your operations, make stats with categorization and prepare your budget of the month. You can know directly how many will rest in your wallet at the end of month with predicted operations.
 
-Only generate html/js/css to a dist folder.
-Your application can be hosted in simple static file hosting !
-
-Inspired by https://github.com/reactjs/react-router-redux/tree/master/examples/basic
+Data is stored client side with local storage. Ability to store data in cloud saas such as Google Drive, Dropbox.
+Done using ReactJs.
 
 ## Installation
 ```

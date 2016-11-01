@@ -1,2 +1,2 @@
-export const INCREASE = "INCREASE";
-export const DECREASE = "DECREASE";
+export const INCREASE = "COUNTER_INCREASE";
+export const DECREASE = "COUNTER_DECREASE";

@@ -9,7 +9,6 @@ let plugins = [];
 plugins.push(extractLESS);
 plugins.push(new HTMLWebpackPlugin({template : __dirname + '/client/index.html', title : "EasyMoney"}));
 plugins.push(new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min-[hash:6].js'));
-//TODO remove if dev mode
 if (process.env.NODE_ENV === "production")
 {
   plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }));
@@ -30,7 +29,7 @@ module.exports = {
       include: __dirname
     },
     {
-      test: /\.less$/,
+      test: /\.(less|css)$/,
       loader: extractLESS.extract(["css","less"])
     },
     { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: "file-loader" },

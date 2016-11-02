@@ -1,7 +1,7 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { hashHistory } from "react-router";
-import { DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
+import { Dialog, DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
 import NavigationClose from "material-ui/svg-icons/navigation/close";
 require("./operationForm.less");
 import { insert, update, remove } from "../../../components/reducers/operations/operations.actions";
@@ -28,11 +28,12 @@ class OperationForm extends React.Component {
           date : new Date(),
           category : "test",
           type : -1,
-        }
+        },
       };
     }
     this.state.operations = props.operations;
     this.state.categories = [ { uuid : "test", name : "Restaurant", icon : "cutlery" }];
+    this.state.open = false;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -78,6 +79,14 @@ class OperationForm extends React.Component {
       hashHistory.goBack();
     }
 
+    handleOpen = () => {
+      this.setState({ ...this.state, open: true });
+    };
+
+    handleClose = () => {
+      this.setState({ ...this.state, open: false });
+    };
+
     render() {
       return (
         <Paper id="operationForm">
@@ -87,11 +96,13 @@ class OperationForm extends React.Component {
               <IconButton onClick={hashHistory.goBack}><NavigationClose /></IconButton>
             }
             iconElementRight={
-              <SelectField name="type"
-                style={{ backgroundColor: this.state.operation.type < 0 ? "red" : "green" }}  value={this.state.operation.type} onChange={(e,i,v) => this.handleChangeType(e,i,v)} fullWidth={true}>
-                <MenuItem value={1} primaryText="Income"/>
-                <MenuItem value={-1} primaryText="Outcome"/>
-              </SelectField>
+              <div className={`type ${this.state.operation.type > 0 ? "income" : "outcome"}`}>
+                <SelectField name="type"
+                  value={this.state.operation.type} onChange={(e,i,v) => this.handleChangeType(e,i,v)} fullWidth={true}>
+                  <MenuItem value={1} primaryText="Income"/>
+                  <MenuItem value={-1} primaryText="Outcome"/>
+                </SelectField>
+              </div>
               }
           />
         <div className="appBody">
@@ -159,12 +170,23 @@ floatingLabelText="Date"
             </div>
             <div className="delete">
               { this.state.operation.uuid &&
-                <RaisedButton label="Delete" secondary={true} fullWidth={true} onClick={() => this.handleDelete()}/>
+                <RaisedButton label="Delete" secondary={true} fullWidth={true} onClick={() => this.handleOpen()}/>
               }
             </div>
             <div className="clearfix" />
           </form>
         </div>
+        <Dialog
+          actions={(<div>
+            <RaisedButton label="Cancel" onClick={() => this.handleClose()} style={{ marginRight:"10px" }}/>
+            <RaisedButton label="Delete" secondary={true} onClick={() => this.handleDelete()}/>
+          </div>)}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={() => this.handleClose()}
+        >
+          Are you sure to delete this operation ?
+        </Dialog>
         </Paper>
       );
     }

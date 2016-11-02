@@ -4,54 +4,82 @@ import { hashHistory, Link } from "react-router";
 import _ from "lodash";
 import moment from "moment";
 
-import RaisedButton from "material-ui/RaisedButton";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentAdd from "material-ui/svg-icons/content/add";
+import { FlatButton, DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
+import NavigationClose from "material-ui/svg-icons/navigation/close";
+import muiThemeable from "material-ui/styles/muiThemeable";
 
 import Operation from "./operation/operation";
 
 require("./monthOperations.less");
 
-const MonthOperations = ({ operations }) => {
+class MonthOperations extends React.Component {
+  constructor(props) {
+    super(props);
+    const operationsPerDay = _.groupBy(_.filter(_.values(props.operations), (operation) => !operation.deleted), "date");
+    const today = moment().format("YYYY-MM-DD");
+    if (!operationsPerDay[today]) {
+      operationsPerDay[today] = [];
+    }
+    const operations = _.sortBy(_.toPairs(operationsPerDay), ([date, operations]) => date);
+    this.state = {
+      operations : operations,
+      wallet : { name : "Compte courant" },
+      today : today
+    };
+  }
+
+  render() {
   //Get this value from wallet
   let currentSum = 100.0;
-  console.log("ordered",operations);
   return (
-    <div id="monthOperations">
-      <h2>Wallet **** :</h2>
-        {
-          _.map(operations, ([day,operations]) => (
-            <div key={day}>
-              <div className="day">{moment(day, "YYYY-MM-DD").format("DD MMMM YYYY")}</div>
-              <div>{ operations.map((operation) => {
-                  currentSum += operation.value;
-                  return(
-                    <Operation key={operation.uuid}
-                      currency="EUR"
-                      price={operation.value || 0}
-                      currentTotal={currentSum}
-                      category="Restaurant"
-                      icon="cutlery"
-                      color="lightgreen"
-                      title={operation.title}
-                      onClick={() => hashHistory.push(`/operationForm/${operation.uuid}`)}/>
-                  );
-                })}
-              </div>
-            </div>)
-          )
+    <Paper id="monthOperations">
+      <AppBar
+        className="appBar"
+        title={this.state.wallet.name}
+        iconElementLeft={
+          <IconButton onClick={hashHistory.goBack}><NavigationClose /></IconButton>
         }
-        <div className="add"><Link to="/operationForm"><i className="fa fa-plus"></i></Link></div>
-          <RaisedButton label="Default" />
-            <FloatingActionButton>
-        <ContentAdd />
-      </FloatingActionButton>
+        iconElementRight={
+          <FlatButton containerElement={<Link to="/operationForm" />} label="Add"/>
+          }
+      />
+    <div className="appBody">
+      {
+        _.map(this.state.operations, ([day,operations]) => (
+          <div key={day} >
+            <div className="day" style={{ backgroundColor : (day === this.state.today ? this.props.muiTheme.palette.accent1Color : null) }}>
+              {moment(day, "YYYY-MM-DD").format("DD MMMM YYYY")}
+              {day === this.state.today ? " (Today)" : ""}
+            </div>
+            <div>{ operations.map((operation) => {
+                currentSum += operation.value;
+                return(
+                  <Operation key={operation.uuid}
+                    currency="EUR"
+                    price={operation.value || 0}
+                    currentTotal={currentSum}
+                    category="Restaurant"
+                    icon="cutlery"
+                    color="lightgreen"
+                    title={operation.title}
+                    onClick={() => hashHistory.push(`/operationForm/${operation.uuid}`)}
+                    />
+                );
+              })}
+            </div>
+          </div>)
+        )
+      }
     </div>
+    </Paper>
   );
-};
-export default connect(
+}
+
+}
+
+export default muiThemeable()(connect(
   (state) => ({
-    operations: _.sortBy(_.toPairs(_.groupBy(_.values(state.operations), "date")), ([date, operations]) => date)
+    operations: state.operations
   }),
   { }
-)(MonthOperations);
+)(MonthOperations));

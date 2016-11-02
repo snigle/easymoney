@@ -15,7 +15,7 @@ const Operation = (props) => (
         <div>{props.category}</div>
       </div>
       <div className="prices td">
-        <div className="price">
+        <div className={`price${props.price > 0 ? " income" : " outcome"}`}>
           <FormattedNumber
             value={props.price}
             style="currency"

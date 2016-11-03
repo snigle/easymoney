@@ -10,6 +10,7 @@ const Foo = ({ operations }) => {
   </div>
 );
 };
+
 export default connect(
   (state) => ({ operations: state.operations }),
   { }

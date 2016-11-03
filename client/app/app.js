@@ -32,6 +32,8 @@ const App = ({ children }) => (
           <Link to="/operationForm">Operation Form</Link>
           {" "}
           <Link to="/monthOperations">Operations</Link>
+          {" "}
+          <Link to="/wallet">Wallet</Link>
         </header>
         <div>
           <button onClick={() => hashHistory.push("/foo")}>Go to /foo</button>

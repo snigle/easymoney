@@ -15,6 +15,8 @@ const Home = ({ number, increase, decrease }) => (
     <Link to="/operationForm">Operation Form</Link>
     {" "}
     <Link to="/monthOperations">Operations</Link>
+    {" "}
+    <Link to="/generateData">generateData</Link>
   </header>
   <div>
     <button onClick={() => hashHistory.push("/foo")}>Go to /foo</button>

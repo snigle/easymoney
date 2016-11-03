@@ -1,6 +1,6 @@
 import uuid from "node-uuid";
 import moment from "moment";
-import { INSERT, UPDATE } from "./operations.constants";
+import { INSERT, UPDATE, DELETE } from "./operations.constants";
 
 export let insert = (operation) => ({
   type: INSERT,
@@ -10,4 +10,9 @@ export let insert = (operation) => ({
 export let update = (operation) =>({
   type: UPDATE,
   operation: { ...operation, date: moment(operation.date).format("YYYY-MM-DD") }
+});
+
+export let remove = (operation) =>({
+  type: DELETE,
+  operation: { ...operation }
 });

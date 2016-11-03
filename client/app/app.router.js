@@ -4,7 +4,7 @@ import { Route } from "react-router";
 import App from "./app";
 import HomeRoute from "./home/home.route";
 import FooRoute from "./foo/foo.route";
-import OperationFormRoute from "./monthOperations/operation/operationForm/operationForm.route";
+import GenerateDataRoute from "./generateData/generateData.route";
 import MonthOperations from "./monthOperations/monthOperations.route";
 import Wallet from "./wallet/wallet.route";
 
@@ -12,9 +12,9 @@ export default (
   <Route path="/" component={App}>
     {HomeRoute}
     {FooRoute}
-    {OperationFormRoute}
     {MonthOperations}
     {Wallet}
+    {GenerateDataRoute}
   </Route>
 );
 

@@ -7,7 +7,6 @@ const saveAndReturn = (state) => {
 };
 
 export default (state = initialState, action) => {
-  console.log("call reducer operation");
   const result = Object.assign({}, state);
   switch(action.type) {
     case INSERT :

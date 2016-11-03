@@ -29,7 +29,7 @@ module.exports = {
       include: __dirname
     },
     {
-      test: /\.(less|css)$/,
+      test: /\.less$/,
       loader: extractLESS.extract(["css","less"])
     },
     { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: "file-loader" },

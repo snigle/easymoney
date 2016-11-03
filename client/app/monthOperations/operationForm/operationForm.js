@@ -1,17 +1,17 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { hashHistory } from "react-router";
-import { DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
+import { Dialog, DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
 import NavigationClose from "material-ui/svg-icons/navigation/close";
 require("./operationForm.less");
-import { insert, update } from "../../../../components/reducers/operations/operations.actions";
+import { insert, update, remove } from "../../../components/reducers/operations/operations.actions";
 
 class OperationForm extends React.Component {
   constructor(props) {
     super(props);
-    const operation = { ...props.operations[props.params.operationID] };
-    console.log("form",props.params.operationID);
+    console.log("operation param",props);
     if (props.params.operationID) {
+      const operation = { ...props.operations[props.params.operationID] };
       this.state = {
         operation : {
           ...operation,
@@ -28,15 +28,14 @@ class OperationForm extends React.Component {
           date : new Date(),
           category : "test",
           type : -1,
-        }
+        },
       };
     }
     this.state.operations = props.operations;
     this.state.categories = [ { uuid : "test", name : "Restaurant", icon : "cutlery" }];
+    this.state.open = false;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.insert = props.insert;
-    this.update = props.update;
   }
 
     handleChange(event, value) {
@@ -65,13 +64,28 @@ class OperationForm extends React.Component {
     }
 
     handleSubmit(event) {
-      if (this.state.uuid) {
-        this.update(this.state.operation);
+      if (this.state.operation.uuid) {
+        this.props.update(this.state.operation);
       } else {
-        this.insert(this.state.operation);
+        this.props.insert(this.state.operation);
       }
       hashHistory.goBack();
     }
+
+    handleDelete() {
+      if (this.state.operation.uuid) {
+        this.props.remove(this.state.operation);
+      }
+      hashHistory.goBack();
+    }
+
+    handleOpen = () => {
+      this.setState({ ...this.state, open: true });
+    };
+
+    handleClose = () => {
+      this.setState({ ...this.state, open: false });
+    };
 
     render() {
       return (
@@ -82,14 +96,17 @@ class OperationForm extends React.Component {
               <IconButton onClick={hashHistory.goBack}><NavigationClose /></IconButton>
             }
             iconElementRight={
-              <SelectField name="type"
-                style={{ "background-color": this.state.operation.type < 0 ? "red" : "green" }}  value={this.state.operation.type} onChange={(e,i,v) => this.handleChangeType(e,i,v)} fullWidth={true}>
-                <MenuItem value={1} primaryText="Income"/>
-                <MenuItem value={-1} primaryText="Outcome"/>
-              </SelectField>
+              <div className={`type ${this.state.operation.type > 0 ? "income" : "outcome"}`}>
+                <SelectField name="type"
+                  value={this.state.operation.type} onChange={(e,i,v) => this.handleChangeType(e,i,v)} fullWidth={true}>
+                  <MenuItem value={1} primaryText="Income"/>
+                  <MenuItem value={-1} primaryText="Outcome"/>
+                </SelectField>
+              </div>
               }
           />
-          <form className="form">
+        <div className="appBody">
+        <form>
             <TextField
               floatingLabelText="Beneficiary / Element"
               name="title"
@@ -145,14 +162,31 @@ floatingLabelText="Date"
               />
             <div className="row">
               <div className="col-sm-6 col-xs-6">
-                <RaisedButton label="Save and Exit" primary={true} fullWidth={true} onClick={this.handleSubmit}/>
+                <RaisedButton label="Save and Exit" primary={true} fullWidth={true} onClick={(e) => this.handleSubmit(e)}/>
               </div>
               <div className="col-sm-6 col-xs-6">
-                <RaisedButton label="Save and Create New" primary={true} fullWidth={true} onClick={this.handleSubmit}/>
+                <RaisedButton label="Save and Create New" primary={true} fullWidth={true} onClick={(e) => this.handleSubmit(e)}/>
               </div>
+            </div>
+            <div className="delete">
+              { this.state.operation.uuid &&
+                <RaisedButton label="Delete" secondary={true} fullWidth={true} onClick={() => this.handleOpen()}/>
+              }
             </div>
             <div className="clearfix" />
           </form>
+        </div>
+        <Dialog
+          actions={(<div>
+            <RaisedButton label="Cancel" onClick={() => this.handleClose()} style={{ marginRight:"10px" }}/>
+            <RaisedButton label="Delete" secondary={true} onClick={() => this.handleDelete()}/>
+          </div>)}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={() => this.handleClose()}
+        >
+          Are you sure to delete this operation ?
+        </Dialog>
         </Paper>
       );
     }
@@ -160,5 +194,5 @@ floatingLabelText="Date"
 
   export default connect(
     (state) => ({ operations : state.operations }),
-    { insert, update }
+    { insert, update, remove }
   )(OperationForm);

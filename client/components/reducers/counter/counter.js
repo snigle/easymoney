@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log("call reducer counte");
     if(action.type === INCREASE) {
         return { number: state.number + action.amount };
     } else if(action.type === DECREASE) {

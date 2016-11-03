@@ -6,6 +6,7 @@ import HomeRoute from "./home/home.route";
 import FooRoute from "./foo/foo.route";
 import OperationFormRoute from "./monthOperations/operation/operationForm/operationForm.route";
 import MonthOperations from "./monthOperations/monthOperations.route";
+import Wallet from "./wallet/wallet.route";
 
 export default (
   <Route path="/" component={App}>
@@ -13,6 +14,7 @@ export default (
     {FooRoute}
     {OperationFormRoute}
     {MonthOperations}
+    {Wallet}
   </Route>
 );
 

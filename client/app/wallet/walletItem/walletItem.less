@@ -1,0 +1,67 @@
+@import "~bootstrap/less/bootstrap";
+
+#walletItem {
+  @operationIconSize : 50px;
+  @operationIconFaSize : 30px;
+  @height: 70px;
+  display: table;
+  table-layout:fixed;
+  margin-bottom: 0px;
+  cursor: pointer;
+
+  .tr  {
+    display: table-row;
+    height: @height;
+  }
+  .tr:hover{
+    background-color: @gray-lighter;
+  }
+  .td {
+    display: table-cell;
+    vertical-align: middle;
+    border-top: 1px @gray-lighter solid;
+  }
+
+  .icon {
+    width:@height;
+    text-align: center;
+    i {
+      display:table;
+      margin:auto;
+      width:@operationIconSize;
+      height:@operationIconSize;
+      background-color: lightblue;
+      border-radius: 50%;
+      .fa {
+        display:table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-size:@operationIconFaSize;
+        color : white;
+      }
+    }
+  }
+
+  .description {
+    width: 100%;
+    h4 {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      text-transform: capitalize;
+    }
+    div {
+      font-size:16px;
+      color:@gray-light;
+    }
+  }
+
+  .initialTotal {
+    width: 2 * @height;
+    text-align: right;
+    font-size:22px;
+    color:red;
+    font-weight: bold;
+  }
+}

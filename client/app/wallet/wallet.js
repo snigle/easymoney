@@ -8,15 +8,11 @@ require("./wallet.less");
 const Wallet = ({ operations }) => {
   return (
       <div id="wallet">
-        I am wallet!
-        <div id="walletitem">
           <WalletItem icon="credit-card" title="Wallet Test" initialTotal={42} currency="EUR"/>
-        </div>
       </div>
   );
 };
 
 export default connect(
-  (state) => ({ operations: state.operations }),
   {}
 )(Wallet);

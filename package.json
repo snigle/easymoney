@@ -4,7 +4,6 @@
   "repository": "snigle/easymoney",
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-react-intl": "^2.2.0",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "material-ui": "^0.16.1",

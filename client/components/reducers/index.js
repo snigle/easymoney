@@ -1,5 +1,6 @@
 export counter from "./counter/counter";
 export operations from "./operations/operations";
+export login from "./login/login";
 
 // NOTE [Create new reducer]
 // Include new reducers here, it permits to app.js to include all reducers in once

@@ -2,10 +2,12 @@ import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { hashHistory, Link } from "react-router";
 import { increase, decrease } from "../../components/reducers/counter/counter.actions";
+import { signIn } from "../../components/reducers/login/login.actions";
 require("./home.less");
 
 const Home = ({ number, increase, decrease }) => (
-  <div><header>
+<div>
+  <header>
     Links:
     {" "}
     <Link to="/">Home</Link>
@@ -17,6 +19,8 @@ const Home = ({ number, increase, decrease }) => (
     <Link to="/monthOperations">Operations</Link>
     {" "}
     <Link to="/generateData">generateData</Link>
+    {" "}
+    <a onClick={() => this.props.signIn("google")}>Oauth</a>
   </header>
   <div>
     <button onClick={() => hashHistory.push("/foo")}>Go to /foo</button>
@@ -27,10 +31,9 @@ const Home = ({ number, increase, decrease }) => (
       <button onClick={() => increase(1)}>Increase</button>
       <button onClick={() => decrease(1)}>Decrease</button>
     </div>
-  </div>
+</div>
 );
-
 export default connect(
-  (state) => ({ number: state.counter.number }),
-  { increase, decrease }
+  (state) => ({ number : state.counter.number, login : state.login }),
+  { increase, decrease, signIn }
 )(Home);

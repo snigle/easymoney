@@ -1,6 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 import { Dialog, DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
 import NavigationClose from "material-ui/svg-icons/navigation/close";
 require("./operationForm.less");
@@ -68,14 +68,14 @@ class OperationForm extends React.Component {
       } else {
         this.props.insert(this.state.operation);
       }
-      hashHistory.goBack();
+      browserHistory.goBack();
     }
 
     handleDelete() {
       if (this.state.operation.uuid) {
         this.props.remove(this.state.operation);
       }
-      hashHistory.goBack();
+      browserHistory.goBack();
     }
 
     handleOpen = () => {
@@ -92,7 +92,7 @@ class OperationForm extends React.Component {
           <AppBar
             title={this.state.operation.uuid ? "Edit operation" : "Create an operation"}
             iconElementLeft={
-              <IconButton onClick={hashHistory.goBack}><NavigationClose /></IconButton>
+              <IconButton onClick={browserHistory.goBack}><NavigationClose /></IconButton>
             }
             iconElementRight={
               <div className={`type ${this.state.operation.type > 0 ? "income" : "outcome"}`}>

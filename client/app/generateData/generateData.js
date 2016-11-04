@@ -1,6 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 import _ from "lodash";
 import { insert } from "../../components/reducers/operations/operations.actions";
 
@@ -18,7 +18,7 @@ class GenerateData extends React.Component{
       this.props.insert(operation);
       date.setDate(date.getDate() - 1);
     });
-    hashHistory.goBack();
+    browserHistory.goBack();
   }
 
   render() {

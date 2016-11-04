@@ -4,6 +4,8 @@ import OauthCallback from "./oauthCallback";
 import driver from "../../../components/oauth/driver";
 export default (
   <div>
-    { driver.getRouteMatches().map((route,i) => <Route key={i} path={route} component={OauthCallback} />) }
+    {
+      driver.getRouteMatches().map((route,i) => <Route key={i} path={route} component={OauthCallback} />)
+    }
   </div>
 );

@@ -1,6 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
-import { hashHistory, Link } from "react-router";
+import { browserHistory, Link } from "react-router";
 import _ from "lodash";
 import moment from "moment";
 import { Element, scroller } from "react-scroll";
@@ -42,7 +42,7 @@ class MonthOperations extends React.Component {
         className="appBar"
         title={this.state.wallet.name}
         iconElementLeft={
-          <IconButton onClick={hashHistory.goBack}><NavigationClose /></IconButton>
+          <IconButton onClick={browserHistory.goBack}><NavigationClose /></IconButton>
         }
         iconElementRight={
           <FlatButton containerElement={<Link to="/operationForm" />} label="Add"/>
@@ -67,7 +67,7 @@ class MonthOperations extends React.Component {
                     icon="cutlery"
                     color="lightgreen"
                     title={operation.title}
-                    onClick={() => hashHistory.push(`/operationForm/${operation.uuid}`)}
+                    onClick={() => browserHistory.push(`/operationForm/${operation.uuid}`)}
                     />
                 );
               })}

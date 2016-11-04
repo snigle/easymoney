@@ -1,15 +1,15 @@
 import { GOOGLE_CLIENT_ID } from "../../../config/common.constants";
 
 const getURL = (login) => {
-  const redirect_uri = window.top ? window.location.origin + window.top.location.pathname : window.location.origin + window.location.pathname;
-  let url = "https://accounts.google.com/o/oauth2/v2/auth?scope=" + encodeURIComponent("https://www.googleapis.com/auth/drive.appfolder email profile") + "&state=drive&redirect_uri=" + encodeURIComponent(redirect_uri) + "&response_type=token&client_id=" + encodeURIComponent(GOOGLE_CLIENT_ID) + "&include_granted_scopes=true";
-  if (login.email) {
-    url += "&login_hint=" + encodeURIComponent(login.email);
+  const redirect_uri = window.top ? window.location.origin : window.location.origin;
+  let url = "https://accounts.google.com/o/oauth2/v2/auth?scope=" + encodeURIComponent("https://www.googleapis.com/auth/drive.appfolder email profile") + "&state=drive&redirect_uri=" + encodeURIComponent(redirect_uri + "/oauthCallback") + "&response_type=token&client_id=" + encodeURIComponent(GOOGLE_CLIENT_ID) + "&include_granted_scopes=true";
+  if (login.id) {
+    url += "&login_hint=" + encodeURIComponent(login.id);
   }
   return url;
 };
 
-const getMatchURL = "*state=drive*";
+const getMatchURL = "oauthCallback";
 
 const getLogin = (pathname, login) => {
   const regex = /.*access_token=([^&]+)&.*/;

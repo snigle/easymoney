@@ -10,7 +10,7 @@ const saveAndReturn = (state) => {
 export default (state = initialState, action) => {
   switch(action.type){
     case REFRESH_TOKEN :
-      return saveAndReturn({ ...state, redirectURI : action.redirectURI });
+      return saveAndReturn({ ...state, force : false, redirectURI : action.redirectURI });
     case SIGN_IN :
       return saveAndReturn({ force : true, driver : action.driver });
     case LOGOUT :

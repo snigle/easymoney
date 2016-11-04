@@ -5,7 +5,7 @@ import { increase, decrease } from "../../components/reducers/counter/counter.ac
 import { signIn } from "../../components/reducers/login/login.actions";
 require("./home.less");
 
-const Home = ({ number, increase, decrease }) => (
+const Home = ({ number, increase, decrease, signIn }) => (
 <div>
   <header>
     Links:
@@ -20,7 +20,7 @@ const Home = ({ number, increase, decrease }) => (
     {" "}
     <Link to="/generateData">generateData</Link>
     {" "}
-    <a onClick={() => this.props.signIn("google")}>Oauth</a>
+    <a onClick={() => signIn("google")}>Oauth</a>
   </header>
   <div>
     <button onClick={() => hashHistory.push("/foo")}>Go to /foo</button>

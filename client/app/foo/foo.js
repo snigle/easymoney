@@ -12,6 +12,6 @@ const Foo = ({ operations }) => {
 };
 
 export default connect(
-  (state) => ({ operations: state.operations }),
+  (state) => ({ operations : state.operations }),
   { }
 )(Foo);

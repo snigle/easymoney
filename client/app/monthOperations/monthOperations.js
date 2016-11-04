@@ -25,7 +25,7 @@ class MonthOperations extends React.Component {
     this.state = {
       operations : operations,
       wallet : { name : "Compte courant" },
-      today : today
+      today : today,
     };
   }
 
@@ -36,7 +36,6 @@ class MonthOperations extends React.Component {
   render() {
   //Get this value from wallet
   let currentSum = 100.0;
-  console.log("render");
   return (
     <Paper id="monthOperations">
       <AppBar
@@ -85,7 +84,7 @@ class MonthOperations extends React.Component {
 
 export default muiThemeable()(connect(
   (state) => ({
-    operations: state.operations
+    operations : state.operations,
   }),
   { }
 )(MonthOperations));

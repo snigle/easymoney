@@ -14,7 +14,7 @@ import AppRouter from "./client/app/app.router";
 
 const reducer = combineReducers({
     ...reducers,
-    routing: routerReducer
+    routing : routerReducer,
 });
 
 const DevTools = createDevTools(

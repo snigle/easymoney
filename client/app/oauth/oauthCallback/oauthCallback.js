@@ -13,7 +13,7 @@ class Oauth extends React.Component {
     OauthDriver.getLogin(this.props.location.pathname, this.props.login).then(function (login) {
       const redirect = self.props.login.redirectURI;
       self.props.setLogin(login.id, login.expires, login.token);
-      if (!redirect) {
+      if (redirect) {
         hashHistory.push(redirect);
       }
     });

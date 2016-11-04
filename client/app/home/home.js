@@ -2,7 +2,7 @@ import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { hashHistory, Link } from "react-router";
 import { increase, decrease } from "../../components/reducers/counter/counter.actions";
-import { setLogin } from "../../components/reducers/login/login.actions";
+import { signIn } from "../../components/reducers/login/login.actions";
 require("./home.less");
 
 class Home extends React.Component {
@@ -11,7 +11,7 @@ class Home extends React.Component {
   }
 
   handleClickOauth() {
-    this.props.setLogin({ type : "google", redirect_uri : this.props.location.pathname });
+    this.props.signIn("google");
   }
 
   render() {
@@ -47,5 +47,5 @@ class Home extends React.Component {
 }
 export default connect(
   (state) => ({ number: state.counter.number, login : state.login }),
-  { increase, decrease, setLogin }
+  { increase, decrease, signIn }
 )(Home);

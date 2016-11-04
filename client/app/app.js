@@ -10,13 +10,13 @@ addLocaleData([...en, ...fr, ...es]);
 import moment from "moment";
 moment.locale(navigator.language || navigator.browserLanguage);
 
-import Oauth from "./oauth/oauth";
-
 const injectTapEventPlugin = require("react-tap-event-plugin");
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+
+import Oauth from "./oauth/oauth";
 
 require("./app.less");
 const App = ({ children, location }) => (

@@ -7,6 +7,7 @@ import FooRoute from "./foo/foo.route";
 import GenerateDataRoute from "./generateData/generateData.route";
 import MonthOperations from "./monthOperations/monthOperations.route";
 import Wallet from "./wallet/wallet.route";
+import OauthRoute from "./oauth/oauthCallback/oauthCallback.route";
 
 export default (
   <Route path="/" component={App}>
@@ -15,6 +16,7 @@ export default (
     {MonthOperations}
     {Wallet}
     {GenerateDataRoute}
+    {OauthRoute}
   </Route>
 );
 

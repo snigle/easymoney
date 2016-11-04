@@ -1,15 +1,27 @@
 import google from "./google";
 
-const drivers = { "google" : google };
+const drivers = { google : google };
 
-const getURL = (login, redirect) => {
-  let driver = drivers[login.type];
+const getURL = (login) => {
+  let driver = drivers[login.driver];
   if (!driver) {
-    throw `oauth type ${login.type} is not mapped to a driver`;
+    throw `oauth type ${login.driver} is not mapped to a driver`;
   }
-  driver.getURL(login,redirect);
+  return driver.getURL(login);
 };
 
-export const OauthDriver = {
+const getLogin = (pathname, login) => {
+  let driver = drivers[login.driver];
+  if (!driver) {
+    throw `oauth type ${login.driver} is not mapped to a driver`;
+  }
+  return driver.getLogin(pathname, login);
+};
+
+const getRouteMatches = () => Object.keys(drivers).map((key) => drivers[key].getMatchURL);
+
+export default {
   getURL : getURL,
+  getRouteMatches : getRouteMatches,
+  getLogin : getLogin
 };

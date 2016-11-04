@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { browserHistory, Link } from "react-router";
 import { increase, decrease } from "../../components/reducers/counter/counter.actions";
 import { signIn } from "../../components/reducers/login/login.actions";
+import Driver from "../../components/driver";
+
 require("./home.less");
 
-const Home = ({ number, increase, decrease, signIn }) => (
+const Home = ({ number, increase, decrease, login, signIn, operations }) => (
 <div>
   <header>
     Links:
@@ -21,6 +23,10 @@ const Home = ({ number, increase, decrease, signIn }) => (
     <Link to="/generateData">generateData</Link>
     {" "}
     <a onClick={() => signIn("google")}>Oauth</a>
+    {" "}
+    <a onClick={() => Driver.download(login,"operations_2016")}>Download</a>
+    {" "}
+    <a onClick={() => Driver.upload(login,"operations_2016", operations)}>Upload</a>
   </header>
   <div>
     <button onClick={() => browserHistory.push("/foo")}>Go to /foo</button>
@@ -34,6 +40,6 @@ const Home = ({ number, increase, decrease, signIn }) => (
 </div>
 );
 export default connect(
-  (state) => ({ number : state.counter.number, login : state.login }),
+  (state) => ({ number : state.counter.number, login : state.login, operations : state.operations }),
   { increase, decrease, signIn }
 )(Home);

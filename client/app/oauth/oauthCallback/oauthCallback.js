@@ -25,6 +25,6 @@ class Oauth extends React.Component {
 }
 
 export default connect(
-  (state) => ({ login: state.login }),
+  (state) => ({ login : state.login }),
   { setLogin }
 )(Oauth);

@@ -9,7 +9,6 @@ import { insert, update, remove } from "../../../components/reducers/operations/
 class OperationForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log("operation param",props);
     if (props.params.operationID) {
       const operation = { ...props.operations[props.params.operationID] };
       this.state = {
@@ -49,7 +48,7 @@ class OperationForm extends React.Component {
     }
 
     handleChangeCategory(event, index, value) {
-      this.setState({ ...this.state, operation : { ...this.state.operation, category: value } });
+      this.setState({ ...this.state, operation : { ...this.state.operation, category : value } });
     }
 
     handleChangeType(event, index, value) {
@@ -60,7 +59,7 @@ class OperationForm extends React.Component {
     }
 
     handleChangeDate(event, date) {
-      this.setState({ ...this.state, operation : { ...this.state.operation, date: date } });
+      this.setState({ ...this.state, operation : { ...this.state.operation, date : date } });
     }
 
     handleSubmit(event) {
@@ -80,11 +79,11 @@ class OperationForm extends React.Component {
     }
 
     handleOpen = () => {
-      this.setState({ ...this.state, open: true });
+      this.setState({ ...this.state, open : true });
     };
 
     handleClose = () => {
-      this.setState({ ...this.state, open: false });
+      this.setState({ ...this.state, open : false });
     };
 
     render() {
@@ -178,7 +177,7 @@ floatingLabelText="Date"
         </div>
         <Dialog
           actions={(<div>
-            <RaisedButton label="Cancel" onClick={() => this.handleClose()} style={{ marginRight:"10px" }}/>
+            <RaisedButton label="Cancel" onClick={() => this.handleClose()} style={{ marginRight : "10px" }}/>
             <RaisedButton label="Delete" secondary={true} onClick={() => this.handleDelete()}/>
           </div>)}
           modal={false}

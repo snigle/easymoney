@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case LOGOUT :
       return saveAndReturn({ });
     case SET_LOGIN :
-      return saveAndReturn({ ...state, redirectURI : null, force : false, token: action.token, expires : action.expires, id : action.id });
+      return saveAndReturn({ ...state, redirectURI : null, force : false, token : action.token, expires : action.expires, id : action.id });
   }
   return state;
 };

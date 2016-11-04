@@ -41,6 +41,6 @@ class Oauth extends React.Component {
 }
 
 export default connect(
-  (state) => ({ login: state.login, routing : state.routing }),
+  (state) => ({ login : state.login, routing : state.routing }),
   { refreshToken }
 )(Oauth);

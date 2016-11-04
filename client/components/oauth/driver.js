@@ -23,5 +23,5 @@ const getRouteMatches = () => Object.keys(drivers).map((key) => drivers[key].get
 export default {
   getURL : getURL,
   getRouteMatches : getRouteMatches,
-  getLogin : getLogin
+  getLogin : getLogin,
 };

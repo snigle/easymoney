@@ -1,7 +1,7 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { refreshToken } from "../../components/reducers/login/login.actions";
-import OauthDriver from "../../components/oauth/driver";
+import OauthDriver from "../../components/driver";
 
 class Oauth extends React.Component {
   constructor(props) {

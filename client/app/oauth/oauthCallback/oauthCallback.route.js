@@ -1,7 +1,7 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { Route } from "react-router";
 import OauthCallback from "./oauthCallback";
-import driver from "../../../components/oauth/driver";
+import driver from "../../../components/driver";
 export default (
   <div>
     {

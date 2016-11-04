@@ -27,6 +27,10 @@ const Home = ({ number, increase, decrease, login, signIn, operations }) => (
     <a onClick={() => Driver.download(login,"operations_2016")}>Download</a>
     {" "}
     <a onClick={() => Driver.upload(login,"operations_2016", operations)}>Upload</a>
+    {" "}
+    <Link to="/wallet">Wallet</Link>
+    {" "}
+    <Link to="/walletForm">Wallet Form</Link>
   </header>
   <div>
     <button onClick={() => browserHistory.push("/foo")}>Go to /foo</button>

@@ -30,11 +30,11 @@ const getLogin = (pathname, login) => {
     if (json.aud !== GOOGLE_CLIENT_ID) {
       throw "google id doesn't correspond";
     }
-    return { token : access_token, id : json.email, expires : json.exp };
+    return { token : access_token, id : json.email, expires : parseInt(json.exp,10) };
   });
 };
 export default {
-  getURL : getURL,
-  getMatchURL : getMatchURL,
-  getLogin : getLogin,
+  getURL : getURL, //Give url to redirect the user to enter login/password
+  getMatchURL : getMatchURL, //Regex to match the callback url sent by google
+  getLogin : getLogin, // Login object created from google answer
 };

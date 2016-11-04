@@ -19,7 +19,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Oauth from "./oauth/oauth";
 
 require("./app.less");
-const App = ({ children, location }) => (
+const App = ({ children }) => (
   <MuiThemeProvider>
     <IntlProvider locale={navigator.language || navigator.browserLanguage}>
       <div>

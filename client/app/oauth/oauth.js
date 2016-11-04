@@ -19,9 +19,6 @@ class Oauth extends React.Component {
       let url = OauthDriver.getURL(login);
       // Set redirectURI and redirect to sign in page
       this.props.refreshToken(this.props.routing.locationBeforeTransitions.pathname);
-      if (window.top) {
-        window.top.location.href = url;
-      }
       window.location.href = url;
     }
   }

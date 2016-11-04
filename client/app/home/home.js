@@ -1,6 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
-import { hashHistory, Link } from "react-router";
+import { browserHistory, Link } from "react-router";
 import { increase, decrease } from "../../components/reducers/counter/counter.actions";
 import { signIn } from "../../components/reducers/login/login.actions";
 require("./home.less");
@@ -23,7 +23,7 @@ const Home = ({ number, increase, decrease, signIn }) => (
     <a onClick={() => signIn("google")}>Oauth</a>
   </header>
   <div>
-    <button onClick={() => hashHistory.push("/foo")}>Go to /foo</button>
+    <button onClick={() => browserHistory.push("/foo")}>Go to /foo</button>
   </div>
     <div id="home">
       Some state changes:

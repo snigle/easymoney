@@ -12,13 +12,12 @@ require("./walletForm.less");
 class WalletForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log("wallet param", props);
 
     if(props.params.walletID) {
       const wallet = { ...props.wallets[props.params.walletID] };
       this.state = {
         wallet : {
-          ...wallet
+          ...wallet,
         },
       };
     } else {
@@ -31,15 +30,15 @@ class WalletForm extends React.Component {
           name : "",
           initialTotal : 0.0,
           currency : "EUR",
-          icon : "test",
+          icon : "credit-card",
           totalPerYear : totalPerYear,
-        }
+        },
       };
     }
 
     this.state.wallets = props.wallets;
-    this.state.icons = [ { uuid : "test", name : "Credit Card", icon : "credit-card" }];
-    this.state.open = false;
+    this.state.icons = [ { uuid : "test", name : "Credit Card", icon : "credit-card" }, { uuid : "test2", name : "Restaurant", icon : "cutlery" } ];
+    this.state.currentIcon = this.state.icons[0].name;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,7 +52,16 @@ class WalletForm extends React.Component {
   }
 
   handleChangeIcon(event, index, value) {
-    this.setState({ ...this.state, icon : { ...this.state.icon, icon: value } });
+    const state = {
+      ...this.state,
+      currentIcon : this.state.icons[index].name,
+      wallet : {
+        ...this.state.wallet,
+        icon : this.state.icons[index].icon,
+      },
+    };
+
+    this.setState(state);
   }
 
   handleSubmit(event) {
@@ -82,34 +90,32 @@ class WalletForm extends React.Component {
             floatingLabelText="Wallet name / Account name"
             name="name"
             hintText="Name"
-            value={this.state.wallet.title}
+            value={this.state.wallet.name}
             onChange={this.handleChange}
             fullWidth={true}
             floatingLabelFixed={true}
             />
 
-          <SelectField value={this.state.wallet.icon}
+          <SelectField value={this.state.currentIcon}
             floatingLabelFixed={true}
             floatingLabelText="Icon"
             onChange={(e,i,v) => this.handleChangeIcon(e,i,v)} fullWidth={true}>
             {
               this.state.icons.map((icon) => (
-                <MenuItem key={icon.uuid} value={icon.uuid} primaryText={icon.name}
-                 />
+                <MenuItem key={icon.uuid} value={icon.name} primaryText={icon.name} />
               ))
             }
           </SelectField>
 
-          {/* Submit buttons*/}
-            <div className="row">
-              <div className="col-sm-6 col-xs-6">
-                <RaisedButton label="Save and Exit" primary={true} fullWidth={true} onClick={(e) => this.handleSubmit(e)}/>
-              </div>
-              <div className="col-sm-6 col-xs-6">
-                <RaisedButton label="Save and Create New" primary={true} fullWidth={true} onClick={(e) => this.handleSubmit(e)}/>
-              </div>
+        {/* Submit buttons*/}
+          <div className="row">
+            <div className="col-sm-6 col-xs-6">
+              <RaisedButton label="Save and Exit" primary={true} fullWidth={true} onClick={(e) => this.handleSubmit(e)}/>
             </div>
-
+            <div className="col-sm-6 col-xs-6">
+              <RaisedButton label="Save and Create New" primary={true} fullWidth={true} onClick={(e) => this.handleSubmit(e)}/>
+            </div>
+          </div>
         </form>
       </Paper>
     );

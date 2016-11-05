@@ -11,8 +11,8 @@ const WalletItem = (props) => (
       </div>
 
       <div className="description td">
-        <h4 className="title">
-          {props.title}
+        <h4 className="name">
+          {props.name}
         </h4>
       </div>
 

@@ -14,10 +14,9 @@ class WalletForm extends React.Component {
     super(props);
 
     if(props.params.walletID) {
-      const wallet = { ...props.wallets[props.params.walletID] };
       this.state = {
         wallet : {
-          ...wallet,
+          ...props.wallets[props.params.walletID],
         },
       };
     } else {
@@ -37,7 +36,7 @@ class WalletForm extends React.Component {
     }
 
     this.state.wallets = props.wallets;
-    this.state.icons = [ { uuid : "test", name : "Credit Card", icon : "credit-card" }, { uuid : "test2", name : "Restaurant", icon : "cutlery" } ];
+    this.state.icons = [ { name : "Credit Card", icon : "credit-card" }, { name : "Restaurant", icon : "cutlery" } ];
     this.state.currentIcon = this.state.icons[0].name;
 
     this.handleChange = this.handleChange.bind(this);
@@ -102,7 +101,7 @@ class WalletForm extends React.Component {
             onChange={(e,i,v) => this.handleChangeIcon(e,i,v)} fullWidth={true}>
             {
               this.state.icons.map((icon) => (
-                <MenuItem key={icon.uuid} value={icon.name} primaryText={icon.name} />
+                <MenuItem key={icon.icon} value={icon.name} primaryText={icon.name} />
               ))
             }
           </SelectField>

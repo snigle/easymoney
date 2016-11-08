@@ -8,15 +8,17 @@ import GenerateDataRoute from "./generateData/generateData.route";
 import MonthOperations from "./monthOperations/monthOperations.route";
 import Wallet from "./wallet/wallet.route";
 import OauthRoute from "./oauth/oauthCallback/oauthCallback.route";
+import WalletForm from "./wallet/walletForm/walletForm.route";
 
 export default (
   <Route path="/" component={App}>
     {HomeRoute}
     {FooRoute}
     {MonthOperations}
-    {Wallet}
     {GenerateDataRoute}
     {OauthRoute}
+    {Wallet}
+    {WalletForm}
   </Route>
 );
 

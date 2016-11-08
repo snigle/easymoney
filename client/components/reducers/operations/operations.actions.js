@@ -14,5 +14,5 @@ export let update = (operation) =>({
 
 export let remove = (operation) =>({
   type : DELETE,
-  operation : { ...operation, lastUpdate : moment().format(moment.ISO_8601) },
+  operation : { ...operation, lastUpdate : moment().toISOString() },
 });

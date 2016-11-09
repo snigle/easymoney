@@ -49,11 +49,16 @@ class Oauth extends React.Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.login.sync) {
+  componentDidUpdate(prevProps) {
+    if (!this.props.login.sync) {
       return;
     }
-    if (nextProps.operations !== this.props.operations) {
+    // Not in oauth phase
+    if (prevProps.login !== this.props.login && !this.props.login.force && !this.props.login.redirectURI) {
+      this.syncOperations();
+      return;
+    }
+    if (prevProps.operations !== this.props.operations) {
       if (!this.state.operations){
         this.syncOperations(true);
       }
@@ -61,12 +66,13 @@ class Oauth extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.login.sync) {
-      return;
+    const now = (new Date()).getTime() / 1000;
+    // Not in oauth phase
+    if (now < this.props.login.expires && !this.props.login.force && !this.props.login.redirectURI) {
+      this.syncOperations();
     }
-    this.syncOperations();
-
   }
+
   render() {
     return null;
   }

@@ -14,20 +14,6 @@ import Operation from "./operation/operation";
 require("./monthOperations.less");
 
 class MonthOperations extends React.Component {
-  constructor(props) {
-    super(props);
-    const operationsPerDay = _.groupBy(_.filter(_.values(props.operations), (operation) => !operation.deleted), "date");
-    const today = moment().format("YYYY-MM-DD");
-    if (!operationsPerDay[today]) {
-      operationsPerDay[today] = [];
-    }
-    const operations = _.sortBy(_.toPairs(operationsPerDay), ([date, operations]) => date);
-    this.state = {
-      operations : operations,
-      wallet : { name : "Compte courant" },
-      today : today,
-    };
-  }
 
   componentDidMount(){
     setTimeout(() => scroller.scrollTo("today", { containerId : "scrollContainer" }), 250);
@@ -40,7 +26,7 @@ class MonthOperations extends React.Component {
     <Paper id="monthOperations">
       <AppBar
         className="appBar"
-        title={this.state.wallet.name}
+        title={this.props.wallet.name}
         iconElementLeft={
           <IconButton onClick={browserHistory.goBack}><NavigationClose /></IconButton>
         }
@@ -50,11 +36,11 @@ class MonthOperations extends React.Component {
       />
     <div className="appBody element" id="scrollContainer">
       {
-        _.map(this.state.operations, ([day,operations]) => (
+        _.map(this.props.operations, ([day,operations]) => (
           <div key={day} >
-            <div className="day" style={{ backgroundColor : (day === this.state.today ? this.props.muiTheme.palette.accent1Color : null) }}>
+            <div className="day" style={{ backgroundColor : (day === this.props.today ? this.props.muiTheme.palette.accent1Color : null) }}>
               {moment(day, "YYYY-MM-DD").format("DD MMMM YYYY")}
-              {day === this.state.today ? <Element name="today"> (Today)</Element> : ""}
+              {day === this.props.today ? <Element name="today"> (Today)</Element> : ""}
             </div>
             <div>{ operations.map((operation) => {
                 currentSum += operation.value;
@@ -82,9 +68,21 @@ class MonthOperations extends React.Component {
 
 }
 
+const mapReducerToProps = (reducers) => {
+  const operationsPerDay = _.groupBy(_.filter(_.values(reducers.operations), (operation) => !operation.deleted), "date");
+  const today = moment().format("YYYY-MM-DD");
+  if (!operationsPerDay[today]) {
+    operationsPerDay[today] = [];
+  }
+  const operations = _.sortBy(_.toPairs(operationsPerDay), ([date, operations]) => date);
+  return {
+    operations : operations,
+    wallet : { name : "Compte courant" },
+    today : today,
+  };
+};
+
 export default muiThemeable()(connect(
-  (state) => ({
-    operations : state.operations,
-  }),
+  mapReducerToProps,
   { }
 )(MonthOperations));

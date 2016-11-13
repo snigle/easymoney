@@ -1,4 +1,4 @@
-import { REFRESH_TOKEN, SIGN_IN, LOGOUT, SET_LOGIN } from "./login.constants";
+import { REFRESH_TOKEN, SIGN_IN, LOGOUT, SET_LOGIN, SYNC } from "./login.constants";
 
 export const signIn = (driver) => ({
     type : SIGN_IN,
@@ -12,6 +12,11 @@ export const refreshToken = (redirectURI) => ({
 
 export const logout = () => ({
   type : LOGOUT,
+});
+
+export const sync = (sync) => ({
+  type : SYNC,
+  sync : sync,
 });
 
 export const setLogin = (id, expires, token) => ({

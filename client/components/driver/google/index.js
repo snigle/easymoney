@@ -54,8 +54,15 @@ const downloadFile = (login, id) => {
       "Accept" : "application/json",
     }),
   })
-  .then(response => response.text())
-  .then(text => text ? JSON.parse(text) : {});
+  .then(response => {
+    if (!response.ok) {
+      throw response;
+    }
+    return response.text();
+  })
+  .then(text => {
+    return text ? JSON.parse(text) : {};
+  }, (e) => { throw e; });
 };
 
 const uploadFile = (login, id, json) => {

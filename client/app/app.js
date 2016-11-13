@@ -17,6 +17,7 @@ injectTapEventPlugin();
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 import Oauth from "./oauth/oauth";
+import Sync from "./sync/sync";
 
 require("./app.less");
 const App = ({ children }) => (
@@ -24,6 +25,7 @@ const App = ({ children }) => (
     <IntlProvider locale={navigator.language || navigator.browserLanguage}>
       <div>
         <Oauth />
+        <Sync />
         <div>{children}</div>
       </div>
     </IntlProvider>

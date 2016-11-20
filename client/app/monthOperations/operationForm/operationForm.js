@@ -1,10 +1,12 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { connect } from "react-redux";
 import { browserHistory } from "react-router";
+import _ from "lodash";
 import { Dialog, DatePicker, TextField, RaisedButton, MenuItem, SelectField, Paper, AppBar, IconButton } from "material-ui";
 import NavigationClose from "material-ui/svg-icons/navigation/close";
 require("./operationForm.less");
 import { insert, update, remove } from "../../../components/reducers/operations/operations.actions";
+import { updateTotal } from "../../../components/reducers/wallets/wallets.actions";
 
 class OperationForm extends React.Component {
   constructor(props) {
@@ -27,10 +29,11 @@ class OperationForm extends React.Component {
           date : new Date(),
           category : "test",
           type : -1,
+          walletUUID : props.location.query.walletUUID,
         },
       };
     }
-    this.state.operations = props.operations;
+    // this.state.operations = props.operations;
     this.state.categories = [ { uuid : "test", name : "Restaurant", icon : "cutlery" }];
     this.state.open = false;
     this.handleChange = this.handleChange.bind(this);
@@ -47,8 +50,10 @@ class OperationForm extends React.Component {
       this.setState(state);
     }
 
-    handleChangeCategory(event, index, value) {
-      this.setState({ ...this.state, operation : { ...this.state.operation, category : value } });
+    handleChangeSelect(name, value) {
+      const operation = { ...this.state.operation };
+      operation[name] = value;
+      this.setState({ ...this.state, operation : operation });
     }
 
     handleChangeType(event, index, value) {
@@ -106,6 +111,17 @@ class OperationForm extends React.Component {
           />
         <div className="appBody">
         <form>
+            <SelectField value={this.state.operation.walletUUID}
+              floatingLabelFixed={true}
+              floatingLabelText="Wallet"
+              onChange={(e,i,v) => this.handleChangeSelect("walletUUID",v)} fullWidth={true}>
+              {
+                _.map(_.values(this.props.wallets), (wallet) => (
+                  <MenuItem key={wallet.uuid} value={wallet.uuid} primaryText={wallet.name}
+                   />
+                ))
+              }
+            </SelectField>
             <TextField
               floatingLabelText="Beneficiary / Element"
               name="title"
@@ -118,7 +134,7 @@ class OperationForm extends React.Component {
             <SelectField value={this.state.operation.category}
               floatingLabelFixed={true}
               floatingLabelText="Category"
-              onChange={(e,i,v) => this.handleChangeCategory(e,i,v)} fullWidth={true}>
+              onChange={(e,i,v) => this.handleChangeSelect("category",v)} fullWidth={true}>
               {
                 this.state.categories.map((category) => (
                   <MenuItem key={category.uuid} value={category.uuid} primaryText={category.name}
@@ -192,6 +208,6 @@ floatingLabelText="Date"
   }
 
   export default connect(
-    (state) => ({ operations : state.operations }),
-    { insert, update, remove }
+    (state) => ({ operations : state.operations, wallets : state.wallets }),
+    { insert, update, remove, updateTotal }
   )(OperationForm);

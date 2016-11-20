@@ -3,6 +3,6 @@ import { Route } from "react-router";
 import OperationForm from "./operationForm";
 
 export default (<div>
-  <Route path="operationForm/:operationID" component={OperationForm} />
-  <Route path="operationForm" component={OperationForm} />
+  <Route path="operationForm(/:operationID)" component={OperationForm} />
+  // <Route path="operationForm" component={OperationForm} />
 </div>);

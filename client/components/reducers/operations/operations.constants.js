@@ -1,3 +1,4 @@
 export const INSERT = "OPERATION_INSERT";
 export const UPDATE = "OPERATION_UPDATE";
+export const UPDATE_ALL = "OPERATION_UPDATE_ALL";
 export const DELETE = "OPERATION_DELETE";

@@ -5,6 +5,6 @@ import OperationFormRoute from "./operationForm/operationForm.route";
 
 export default (
   <div>
-    <Route path="monthOperations" component={MonthOperations} />
+    <Route path="wallets/:walletUUID/operations/:begin/:end" component={MonthOperations} />
     {OperationFormRoute}
   </div>);

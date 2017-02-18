@@ -18,9 +18,13 @@ module.exports = {
   entry: "./main.js",
   output: {
     path: path.join(__dirname, "dist"),
-    filename  : 'app.min-[hash:6].js'
+    filename  : 'app.min-[hash:6].js',
+    publicPath : '/'
   },
   devtool: "source-map",
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     loaders: [{
       test: /\.js$/,
